@@ -1,8 +1,7 @@
-/* eslint-disable react/prop-types */
-
 import { FaBookmark } from 'react-icons/fa';
+import PropTypes from 'prop-types';
 
-const Blog = ({ blog }) => {
+const Blog = ({ blog, handleAddToBookmark }) => {
   const {
     title,
     cover,
@@ -29,7 +28,10 @@ const Blog = ({ blog }) => {
         </div>
         <div>
           <span>{reading_time} min read</span>
-          <button className="ml-2 text-2xl text-red-600">
+          <button
+            onClick={() => handleAddToBookmark(blog)}
+            className="ml-2 text-2xl text-red-600"
+          >
             <FaBookmark></FaBookmark>
           </button>
         </div>
@@ -50,3 +52,8 @@ const Blog = ({ blog }) => {
 };
 
 export default Blog;
+
+Blog.propTypes = {
+  blog: PropTypes.object.isRequired,
+  handleAddToBookmark: PropTypes.func,
+};
